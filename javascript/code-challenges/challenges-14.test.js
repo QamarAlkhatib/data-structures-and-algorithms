@@ -107,7 +107,7 @@ let biggerThanLuke = (arr) => {
   // Solution code here...
   return arr.filter(function (element) {
     return element.mass > 77;
-  }).map((character) => {return character.name;}).join(" - ");
+  }).map((character) => { return character.name; }).join(" - ");
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -167,6 +167,23 @@ Here is a sample board:
 
 const detectTicTacToeWin = (board) => {
   // Solution code here...
+  let hasWon = false;
+
+  for (let i = 0; i < 3; i++) {
+    if ((board[i][0]==board[i][1])==board[i][2]) {
+      hasWon = true;
+    } else if ((board[0][i]==board[1][i])==board[2][i]) {
+      hasWon = true;
+    }
+  }
+  if (
+    (board[0][0]==board[1][1])==board[2][2] ||
+    (board[0][2]==board[1][1])==board[2][0]
+  ) {
+    hasWon = true;
+  }
+
+  return hasWon;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -241,7 +258,7 @@ describe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   test('It should return true if there are three in a row', () => {
     expect(detectTicTacToeWin([['X', '', 'O'], ['X', 'O', ''], ['X', 'O', 'X']])).toStrictEqual(true);
     expect(detectTicTacToeWin([['O', '', 'X'], ['X', 'O', 'X'], ['X', '', 'O']])).toStrictEqual(true);
